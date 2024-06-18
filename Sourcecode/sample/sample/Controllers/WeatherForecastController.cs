@@ -15,7 +15,6 @@ namespace sample.Controllers
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
-            _logger = logger;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
@@ -31,7 +30,7 @@ namespace sample.Controllers
             .ToArray();
         }
 
-        private void ggggg_GetWeatherForecast()
+        public void ggggg_GetWeatherForecast()
         {
             var RNG = new Random();
 
