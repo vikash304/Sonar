@@ -21,7 +21,7 @@ namespace sample.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
-            ggggg();
+            ggggg_GetWeatherForecast();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
@@ -31,8 +31,9 @@ namespace sample.Controllers
             .ToArray();
         }
 
-        private void ggggg()
+        private void ggggg_GetWeatherForecast()
         {
+            var RNG = new Random();
 
         }
     }
