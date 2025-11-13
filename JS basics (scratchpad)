@@ -1,0 +1,109 @@
+/*
+Method overloading in JS
+function fun(name)
+{
+  console.log(name);
+}
+
+function  fun(name,add)
+{
+  console.log(name + add);
+}
+
+fun("ankit","Delhi");
+*/
+
+/*
+//Delegate
+function ff(name)
+{
+ console.log(name) ;
+};
+function show(f,x)
+{
+  f(x);
+}
+
+show(ff,"ankit");
+*/
+
+/*
+Foraech
+var a=["ankit","anuj","anil"];
+function fun(value)
+{
+  console.log(value);
+}
+a.forEach(fun);
+*/
+
+/*
+IIFE or selfinvoking Functions
+(function (name)
+{
+ console.log(name) ;
+})("ANkit");
+*/
+/*
+Q: console.log(y);y or console.log(y);y=10
+Ans:error becoz interpretor won't be able to rercognize whether it is variable or not because at the time of log y is not declared.
+to meke it working
+either use var y
+if we use var than hoisting work
+otherwise hoisting doesn't work in any way like y=10 or y;
+*/
+
+/*
+//problem
+tu(1);//error tu is not a function becoz tu is declared as variable during hoisting
+//thatswhy compiler predict it as varaable and we are using it as function which shows
+  error it is not function.
+fg(1);//error :fg is not defined becoz fg is not declared nor defined
+funn(1);//output => 1 becoz funn() is declaRED function declaration during hoisting tahtswhy
+//compilaer predict it as function
+function funn(i)
+{
+  console.log(i);
+}
+
+var tu=function (i)
+{
+  console.log(i);
+}
+
+var tu=function fg(i)
+{
+  console.log(i);
+}
+*/
+/*
+                          //Hoisting in JS
+//doesn't Hoist'
+console.log(r);
+ReferenceError: r is not defined
+console.log(r); r
+ReferenceError: r is not defined
+console.log(r); r=10
+ReferenceError: r is not defined
+*/
+
+/*
+//will Hoist
+console.log(o);var o;
+undefined
+console.log(o);var o=10;
+undefined
+// Conclusion : it means var is required for hoisting but for function hoisting var is not required
+*/
+
+//Application of Closure in JS Or Module pattern in js/Properties in js or getter and setter in js
+function student()
+{
+  var roll=1;
+  return {getname:roll};
+}
+var obj= new student();
+console.log(obj.getname); this will work but obj will treat like a object of student
+var vik= student();
+console.log(vik.getname); this will also work but vik will treat as a returned object returned by student function.
+

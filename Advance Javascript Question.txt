@@ -1,0 +1,17 @@
+1. Write an output of these statements below:
+
+a) console.log(a);
+b) console.log(a); a;
+c) console.log(a); var a;
+d) console.log(a); var a=10;
+e) console.log(a);  a=10;
+
+f) (function () {
+    console.log(b); 
+b=10;
+})();
+
+g) (function () {
+    console.log(b); 
+var b=10;
+})();

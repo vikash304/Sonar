@@ -1,0 +1,41 @@
+how we can configure multiple database at the same time in single spring boot application
+what it the difference hascode and equals method?
+What is the difference between component and bean?
+if we want to create the object if we don't have source class (@component or @bean)?
+What is the cyclic dependency?
+which one we can use (setter or constuctor injection) to avoid cyclic dependency?
+what is the bean scope and how many types?
+what is the meaning of bean scope?
+we have list of employee object write a code to filter those employee of salay > 50?
+what filter returns?
+what is the method reference?
+what is the meaning of default method?
+Explain difference between synchronize hash map and component hash map? how it works?
+What is concurrent exception?
+What is the first level caching?
+Can you please name the first level caching?
+explain the difference between get and load?
+explain the difference between map and flagmap?
+explain the difference between comparable and comparator?
+explain the saga design pattern?
+explain the difference between resttemplate and web client?
+suppose we have one application and multiple api and I want to communicate multiple api at the same time?
+explain the difference between put and patch?
+suppose we have one object and we want to modify that object on server?
+can we use post instead of put?
+what is the difference between web services and rest template?
+what is the meaning of restless communication?
+what is the path variable and querystring?
+what is the difference between requestmapping and getmapping?
+can you tell me session mapping?
+how many types of mapping?
+how many tables created in many to many mapping?
+what is the new enhancement in synchronize hash map?
+what is the difference between hash map, concurrent hash map, synchronize hash map?
+what is the difference between equals to compare two objects and hash code?
+what is the transient and purpose of transient?
+if we are inserting null two times(null value1, null value2) in hasmap then how it is going to work?
+if we have a static variable then what would be output after deserilization?
+
+
+

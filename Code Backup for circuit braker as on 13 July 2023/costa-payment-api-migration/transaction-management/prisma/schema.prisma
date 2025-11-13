@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model t_pgw_card_details {
+  ID                    String    @id @db.VarChar(36)
+  customer_id           String    @db.VarChar(20)
+  encrypted_token       String    @unique(map: "encrypted_token_UNIQUE") @db.VarChar(700)
+  hashed_token          String    @db.VarChar(70)
+  card_number_4dig      String    @db.VarChar(4)
+  expiry_date           String    @db.VarChar(10)
+  card_type             String    @db.VarChar(20)
+  default_card          Boolean?  @db.Bit(1)
+  created_date          DateTime  @db.DateTime(0)
+  updated_date          DateTime? @db.DateTime(0)
+  card_token_refs       String?   @db.Text
+  token_expiry_datetime DateTime? @db.DateTime(0)
+  funding_type          String?   @db.VarChar(100)
+
+  @@index([customer_id], map: "CustomerId")
+  @@index([hashed_token], map: "hashed_token_Idx")
+  @@index([ID], map: "id_index")
+}

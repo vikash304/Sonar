@@ -1,0 +1,33 @@
+Step 1 : Generate AWS Access key and secret key 
+step 2 : install aws cli and open command prompt
+step 3 : please run this command  npm install -g aws-azure-login
+step 4 : aws configure by answering this
+         Access key: which ever you generated in above step
+         secret key: which ever you generated in above step
+         region: eu-west-2
+         format: leave this empty
+
+step 5 : set AWS_PROFILE=default
+
+Step 6 : 
+configure with this command aws-azure-login --configure by answering this
+? Azure Tenant ID: 04ed63ba-9902-48da-b4cd-52b94b3a487e
+? Azure App ID URI: https://signin.aws.amazon.com/saml-auth-acct
+? Default Username: [Insert your Costa email here]
+? Stay logged in: skip authentication while refreshing aws credentials (true|false) true
+? Default Role ARN (if multiple): leave this empty
+? Default Session Duration Hours (up to 12): 1
+
+
+
+step 7 : Need to add into bottom of credential file
+[costa-aws-payments-dev-administrators]
+region=eu-west-2
+role_arn=arn:aws:iam::649124520276:role/costa-aws-payments-dev-administrators
+source_profile=default
+
+Repeate these steps once session get expired
+step 8 : set AWS_PROFILE=default
+step 9 : aws-azure-login --mode debug
+step 10 : set AWS_PROFILE=costa-aws-payments-dev-administrators
+step 11 : aws sts get-caller-identity

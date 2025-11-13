@@ -1,0 +1,14 @@
+root: true
+env:
+  commonjs: true
+  es2021: true
+  node: true
+  mocha: true
+extends: airbnb-base
+overrides: []
+parserOptions:
+  ecmaVersion: 2022
+rules:
+  no-console: "off"
+ignorePatterns:
+  - '**/swagger/**'

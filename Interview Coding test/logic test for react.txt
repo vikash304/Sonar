@@ -1,0 +1,39 @@
+import React from 'react';
+import { render } from 'react-dom';
+
+const getRandomNumber = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+let popuplate = () => {
+  let list = [];
+  for (let i = 0; i < 40; i++) {
+    list.push(getRandomNumber(0, 100));
+  }
+  return list;
+};
+popuplate();
+// 1. Create array of 40 items, fill with random numbers (0-100)
+
+export default function App() {
+  // 5. Add number input for filter value that user can change
+  // 6. Debounce the filter value, waiting 3 seconds for stable value
+
+  return (
+    <div>
+      LIST:
+      <ul>
+        {list.map((item) => (
+          <li key={item}></li>
+        ))}
+        {/* 2. Iterate over items, display in format: */}
+        {/*   <li>Item: 1, value: 88</li> */}
+        {/*   <li>Item: 2, value: 15</li> */}
+        {/*   <li>Item: 3, value: 35</li> */}
+        {/* 3. Show only greater than 30 */}
+        {/* 4. Style even values with .even class, and odd values with .odd class */}
+      </ul>
+    </div>
+  );
+}
+
+render(<App />, document.getElementById('root'));

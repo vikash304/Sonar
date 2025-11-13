@@ -1,0 +1,28 @@
+what is service bus?
+
+How two microservices communicate with each other via service bus?
+
+What is middleware?
+
+How to handle global exception and create custom exception in asp.net core?
+
+How much size of file can be uploaded in storage account?
+
+How to resume file upload from the same position once connection lost for the large size(3GB) of file?
+
+How to know the percentage of file upload once resume the session which was broken due to large size file
+and also suggest the name of event?
+and how to connect back if we don't have user id and password?
+
+what will be event which will says the percentage of file uploaded
+if unique session is break then how to connect if we don't have user id and password
+
+If we have a table with lots of data and I want to insert or validate duplicate data form the table then what all are the ways to 
+check this in a sort span of time?
+
+How to implement autocomplete for the crores of data with dropdown?
+
+if you have single db that has one table employee which has crore of employee and then there is another table where I have to copy non-duplicate employee
+suppose form the same table I want to create autocomplete control and press 3 character which will search among crore employees then performance will be slow
+what should be the approach?
+

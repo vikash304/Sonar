@@ -1,0 +1,59 @@
+int i = 20; //4byte
+
+float a = 21.42F;  // 4 byte
+
+decimal b = 22.42M;  //16 byte
+
+double c = 23.42;  // 8 byte
+
+long d = 24; // 8 byte
+
+short e = 25; // 2 byte
+
+
+
+
+ i = a; // 21
+
+ i = b; //compile time err: integer variables can't contain decimal values
+
+ i = c;// similar to above
+
+ i = d; //22  compile time err: integer variables can't contain decimal values
+
+ i = e; //25
+
+
+
+ e = a; //compile time err: out of range
+
+ e = b; //compile time err: integer variables can't contain decimal values
+
+ e = c; //compile time err: integer variables can't contain double values
+
+ e = d; //compile time err: out of range
+
+ e = i; //compile time err: out of range
+
+
+ a = i; //20
+
+ a = b; //compile time err: out of range
+
+ a = c; //compile time err: out of range
+
+ a = d; //compile time err: out of range
+
+ a = e; //25
+ 
+ 
+ 
+             b = i; //20
+
+            b = a; //21.42
+
+            b = c; //23.42
+
+            b = d; //24
+
+            b = e; //25

@@ -1,0 +1,38 @@
+Debouncing
+
+FormBuilder InputComponent
+QuestionComponent
+QuestionFactory => SUbjective Question componentFactory => SUbjective Question component
+for (x of person) name
+for(x in person) vikash
+var person = {"name": "vikash"}  = x["name"]
+["vikasj","raj"]
+()={cons}
+
+1. 
+2. 
+3. ABC 
+4. 
+5. XYZ 
+6. ABC 
+. 
+. 
+15. ABC-XYZ
+. 
+. 
+100. XYZ
+
+
+for(let x=0;x<100;x++){
+
+if(x%3 == 0){
+console.log(ABC )
+}
+else if(x%5 == 0){
+console.log(XYZ )
+}
+else{
+if((x%5 == 0) &&(x%3 == 0) 
+console.log(ABC-XYZ)
+}
+}

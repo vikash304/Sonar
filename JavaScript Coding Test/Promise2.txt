@@ -1,0 +1,27 @@
+console.log('z');
+
+setTimeout(()=>{console.log('d')}, 500, 'one');
+
+let p = new Promise((resolve, reject) => {
+setTimeout(() => {
+
+console.log('b');
+resolve();
+  }, 500); 
+});
+
+p.then(result => console.log('a'));
+
+setTimeout(()=>{console.log('e')}, 500, 'one')
+
+console.log('f');
+
+
+z
+f
+b
+a
+d
+e
+
+

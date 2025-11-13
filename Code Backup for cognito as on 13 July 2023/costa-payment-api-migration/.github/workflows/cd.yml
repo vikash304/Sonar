@@ -1,0 +1,50 @@
+name: "Continuous Deployment Workflow"
+
+on:
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: Name of environment - prod | stg | uat | dev (default)
+        required: true
+        default: dev
+
+jobs:
+  Deployment:
+    name: "Deploy ${{ inputs.stage }}"
+    runs-on: ubuntu-22.04
+    environment:
+      name: ${{ inputs.stage }}
+    env:
+      LOG_LEVEL: ${{ vars.LOG_LEVEL }}
+    outputs:
+      endpoint: ${{ steps.output_var.outputs.url }}
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu, macos, or windows
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      # Checkout the repository to the GitHub Actions runner
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.AWS_REGION }}
+          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+          role-duration-seconds: 3600
+          role-skip-session-tagging: true
+          role-session-name: deploy-cicd
+
+      - name: Install Serverless
+        run: npm i -g serverless@3.x
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Deploy project with Serverless
+        run: sls deploy --stage ${{ inputs.stage }} --region ${{ vars.AWS_REGION }} --verbose

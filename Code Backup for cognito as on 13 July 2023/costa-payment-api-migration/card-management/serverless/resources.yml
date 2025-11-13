@@ -1,0 +1,252 @@
+Resources:
+  MyVPC:
+    Type: "AWS::EC2::VPC"
+    Properties:
+        CidrBlock: "172.27.0.0/18"
+        EnableDnsSupport: true
+        EnableDnsHostnames: true
+        InstanceTenancy: "default"
+        Tags: 
+          - 
+            Key: "Name"
+            Value: "payments-vpc"
+
+  EC2Subnet:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+        AvailabilityZone: !Sub "${AWS::Region}a"
+        CidrBlock: "172.27.0.0/21"
+        VpcId: !Ref MyVPC
+        MapPublicIpOnLaunch: true
+        Tags: 
+          - 
+            Key: "Name"
+            Value: !Sub "payments-subnet-public1-${AWS::Region}a"
+
+  EC2Subnet2:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+        AvailabilityZone: !Sub "${AWS::Region}b"
+        CidrBlock: "172.27.8.0/21"
+        VpcId: !Ref MyVPC
+        MapPublicIpOnLaunch: true
+        Tags: 
+          - 
+            Key: "Name"
+            Value: !Sub "payments-subnet-public2-${AWS::Region}b"
+
+  EC2Subnet3:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+        AvailabilityZone: !Sub "${AWS::Region}c"
+        CidrBlock: "172.27.16.0/21"
+        VpcId: !Ref MyVPC
+        MapPublicIpOnLaunch: true
+        Tags: 
+          - 
+            Key: "Name"
+            Value: !Sub "payments-subnet-public3-${AWS::Region}c"
+
+  EC2Subnet4:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+        AvailabilityZone: !GetAtt EC2Subnet.AvailabilityZone
+        CidrBlock: "172.27.24.0/21"
+        VpcId: !Ref MyVPC
+        MapPublicIpOnLaunch: false
+        Tags: 
+          - 
+            Key: "Name"
+            Value: !Sub "payments-subnet-private1-${EC2Subnet.AvailabilityZone}"
+
+  EC2Subnet5:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+        AvailabilityZone: !GetAtt EC2Subnet2.AvailabilityZone
+        CidrBlock: "172.27.32.0/21"
+        VpcId: !Ref MyVPC
+        MapPublicIpOnLaunch: false
+        Tags: 
+          - 
+            Key: "Name"
+            Value: !Sub "payments-subnet-private2-${EC2Subnet2.AvailabilityZone}"
+
+  EC2Subnet6:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+        AvailabilityZone: !GetAtt EC2Subnet3.AvailabilityZone
+        CidrBlock: "172.27.40.0/21"
+        VpcId: !Ref MyVPC
+        MapPublicIpOnLaunch: false
+        Tags: 
+          - 
+            Key: "Name"
+            Value: !Sub "payments-subnet-private3-${EC2Subnet3.AvailabilityZone}"
+
+  EC2Subnet7:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+        AvailabilityZone: !GetAtt EC2Subnet.AvailabilityZone
+        CidrBlock: "172.27.48.0/21"
+        VpcId: !Ref MyVPC
+        MapPublicIpOnLaunch: false
+        Tags: 
+          - 
+            Key: "Name"
+            Value: !Sub "payments-subnet-db-private1-${EC2Subnet.AvailabilityZone}"
+
+  EC2Subnet8:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+        AvailabilityZone: !GetAtt EC2Subnet2.AvailabilityZone
+        CidrBlock: "172.27.56.0/22"
+        VpcId: !Ref MyVPC
+        MapPublicIpOnLaunch: false
+        Tags: 
+          - 
+            Key: "Name"
+            Value: !Sub "payments-subnet-db-private2-${EC2Subnet2.AvailabilityZone}"
+
+  EC2Subnet9:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+        AvailabilityZone: !GetAtt EC2Subnet3.AvailabilityZone
+        CidrBlock: "172.27.60.0/22"
+        VpcId: !Ref MyVPC
+        MapPublicIpOnLaunch: false
+        Tags: 
+          - 
+            Key: "Name"
+            Value: !Sub "payments-subnet-db-private3-${EC2Subnet3.AvailabilityZone}"
+
+
+  DBSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties: 
+      DBSubnetGroupDescription: "Subnet for Aurora"
+      DBSubnetGroupName: aurora-subnet-group
+      SubnetIds: 
+        - !Ref EC2Subnet7
+        - !Ref EC2Subnet8
+        - !Ref EC2Subnet9
+
+  MyQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      FifoQueue: true
+      QueueName: payments-queue.fifo
+      ContentBasedDeduplication: true
+
+  MyDbSecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Name: '${self:custom.stage}-db-AuroraUserSecret'
+      Description: RDS database auto-generated user password
+      GenerateSecretString:
+        SecretStringTemplate: '{"username": "admin"}'
+        GenerateStringKey: 'password'
+        PasswordLength: 16
+        ExcludeCharacters: '"@/\\'
+  
+  MyDBCluster:
+    Type: AWS::RDS::DBCluster
+    Properties:
+      DeletionProtection: true
+      Engine: aurora-mysql
+      EngineMode: serverless
+      MasterUsername: !Sub '{{resolve:secretsmanager:${MyDbSecret}:SecretString:username}}'
+      MasterUserPassword: !Sub '{{resolve:secretsmanager:${MyDbSecret}:SecretString:password}}'
+      DBClusterIdentifier: payments-cluster
+      DBSubnetGroupName: !Ref DBSubnetGroup
+      ScalingConfiguration:
+        AutoPause: true
+        MinCapacity: 1
+        MaxCapacity: 2
+        SecondsUntilAutoPause: 300
+      StorageEncrypted: true
+      VpcSecurityGroupIds:
+        - !GetAtt DBSecurityGroup.GroupId
+
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - lambda.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Policies:
+        - PolicyName: lambda-access
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+            - Effect: Allow
+              Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+              - sqs:ReceiveMessage
+              - sqs:DeleteMessage
+              - sqs:GetQueueAttributes
+              Resource: "*"
+            - Effect: Allow
+              Action:
+              - secretsmanager:GetSecretValue
+              Resource: !Ref MyDbSecret
+            - Effect: Allow
+              Action:
+              - ec2:CreateNetworkInterface
+              - ec2:DescribeNetworkInterfaces
+              - ec2:DeleteNetworkInterface
+              Resource: "*"
+
+  LambdaSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Security Group for lambda function
+      VpcId: !Ref MyVPC
+
+  DBSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Security Group for RDS
+      VpcId: !Ref MyVPC
+
+  DBSecurityGroupIngress:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !GetAtt DBSecurityGroup.GroupId
+      IpProtocol: tcp
+      FromPort: 3306
+      ToPort: 3306
+      SourceSecurityGroupId: !GetAtt LambdaSecurityGroup.GroupId
+
+  UserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: serverless-auth-pool
+      Schema:
+        - Name: email
+          Required: true
+            Mutable: true
+      Policies:
+        PasswordPolicy:
+          MinimumLength: 6
+      AutoVerifiedAttributes: ["email"]
+      
+    UserClient:
+      Type: AWS::Cognito::UserPoolClient
+      Properties:
+        ClientName: user-pool-ui
+        GenerateSecret: false
+        UserPoolId: { Ref: UserPool }
+        AccessTokenValidity: 5
+        IdTokenValidity: 5
+        ExplicitAuthFlows:
+          - "ADMIN_NO_SRP_AUTH"  
+
+       

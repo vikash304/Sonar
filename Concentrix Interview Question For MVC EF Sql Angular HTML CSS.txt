@@ -1,0 +1,107 @@
+Angular
+
+.   Difference between Module and component in Angular?
+.   Difference between ngOnInit and ngOnChanges in angular?
+.   Explain Life cycle of angular?
+
+Entity Framework
+
+.   Explain different ways to update edmx after adding two more column in existing table and if it is still unable to update edmx then what will be solution?
+.   When to use code first approach and when to use database first approach in entity framework?
+
+C#
+
+.   How to make function in c# by which we can return two type?
+Public Employee GetData(ref List<Employee> distinctresult){
+distinctresult = 2;
+List<Employee>
+return new Employee();
+}
+
+MVC
+
+.   Difference between ViewData and TempData in MVC?
+.   What new feature came in latest asp.net webAPI(2.0)?
+.   How to do routing for areas, controllers and actions?
+[Route(name="vikash")]
+[HttpPost]
+public ActionResult aa()
+{}
+
+[Route(name="Kumar")]
+[HttpPost]
+public ActionResult bb([FormBody] vikash)
+{}
+
+https://www.vikash.com/home/vikash
+https://www.vikash.com/home/kumar
+
+.   Explain override filter in latest version of asp.net mvc?
+.   Explain order of filter execution in asp.net mvc?
+.   Explain different ways to pass data from view to controller in asp.net MVC?
+
+Asp.net core
+
+.   What is the type of application(console or web application) when you create new project in asp.net core?
+
+IIS
+
+.   how we will be able to access webapplication which is deployed in the machine for which we don't have domain registered and don't have certificate
+
+HTML & CSS
+
+.   what is DOM?
+.   Explain Box Model in css?
+.   Explain webpack?
+.   Explain meta tag?
+.   What will be root cause and how to investigate if something is failing in mobile browser while not failing in laptop browser?
+.   What will be root cause and how to investigate if taking too much time to render page (Angular or React)?
+.   Difference between div and span in html?
+.   What are the values of position in css? what is the difference between position:absolute and position:relative?
+.   Difference between display:none and visiblity:hidden in css?
+.   How to make media query in existing css class for specific screen size?
+.   List the every classes of Bootstrapper?
+.   what will be output of this html code in chrome
+    <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div>
+    <span>a</span><span>b</span><span>c</span><span>d</span><span>e</span><span>f</span><span>g</span><span>h</span><span>i</span><span>j</span>
+
+Javascript 
+
+.   Explain prototype in javascript?
+.   Difference between null & undefined in javascript?
+.   Explain this in javascript and how it works differently in arrow function?
+.   what will be output of the code as bellows:
+    var a;
+    console.log(a);
+    ()->{ console.log($(this));}
+    var b ={
+    null:"Vikas",
+    null:"Kumar" 
+    }
+    console.log(b.null);
+
+Sql Server
+
+Table A(id : bigint, idtype, name, Address)
+1 1 A null
+2 1 A null
+3 1 A null
+4 1 A null
+
+
+Create proc usp_TwoStatement
+(
+OUTPUT TABLE @distinctTable
+)
+BEGIN
+select id, idtype, name, Address from TableA;
+
+select @distinctTable = distinct  idtype, name from TableA;
+END
+
+create table vikash(
+id : bigint, idtype int, name varchar(max), Address)
+
+
+
+

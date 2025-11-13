@@ -1,0 +1,30 @@
+1.  Explain MicroTask & MacroTask in javascript and also explain output of this code?
+
+console.log('0'); 
+setTimeout(()=> {console.log('settimeout')},0); 
+Promise.resolve().then(()=> {console.log('2'); console.log('3')}); 
+Promise.resolve().then(()=> {console.log('4'); console.log('5')}); 
+console.log('6');
+
+2.  What are the steps for performance optimization?
+3.  When to use Sql Over NoSQl? 
+4.  when to use NoSql over SQL?
+5.  What are the security steps taken for your application in your experience?
+6.  How to make a website which will convert user supplied large url into tiny url?
+7.  What will be output of this code
+    function Person(namep, agep){ this.name = namep, this.age = agep};
+    var p1 = new Person('v', 25);
+    p1.__proto__.__proto__.__proto__
+    Person.prototype.__proto__.__proto__
+    Person.prototype.prototype
+
+8.  Explain Cross site script?
+9.  Explain Binary search and complexity of it?
+10. Write a query to remove duplicate record in NoSql?
+11. How to prevent sql injection in sql & NoSql?
+12. Which design pattern you will use to get new value in RSS feed?
+13. What are the steps you will take to make available your application?
+14. what you will prefer composition or inheritance?
+15. Explain Aggregation in MongoDB?
+16. Where and how you used singeleton design pattern in angular project?
+

@@ -1,0 +1,40 @@
+Mind tree interview question
+
+life cycel of angular?
+which first event to get textbox property?
+how to implement Custom change detection?
+difference between ngoninit and constructor of angular component?
+what are the loading strategy in angualar?
+how do you custom strategy to implement lazy loading in angular?
+What are the ways(method) for communication between component in angular?
+explain communication between components in angular with route?
+what is the purpose of rxjs
+what are the operator of rxjs
+what are the things to resolve performance issue in angular
+what are the steps to create custom directive in angular
+when we use the switchmap ,hashmap, mergemap and concatmap?
+Differences between Middleware and Filter in asp.net core?
+suppose I have two async method which is executing parallely then how to rollback first async method if any one fail
+when I fetch order at the same time I need to fetch orderdetails in Entity framework core?
+Explain tracking & Non-tracking in entity framework?
+How to change-tracking-entity-framework?
+what are the steps to identify performance issue with sql server
+what are the steps to improve identified sql query?
+What is execution plan in sql server?
+what are the operators in execution plan of sql server?
+Entity framework handling for prev and new data with tracking?
+How do I obtain a Query Execution Plan in SQL Server?
+How to Boost Your Entity Framework Core Performance by Following These Best Practices?
+when I fetch order at the same time I need to fetch orderdetails in Entity framework core. how to do that?
+how to Calling multiple async services in parallel?
+differnece between task.whenall and task.whenany in c#?
+Why exceptions in async methods are “dangerous” in C#?
+how to do exception handling in async method of asp.net core?
+Explain AggregateException in async method of C#?
+Explain Catching Exceptions in async methods when not called with await?
+Explain real time common scenarios to use middleware in asp.net core?
+difference between switchMap, mergeMap, concatMap (and exhaustMap)?
+what are the operator of rxjs?
+what is the purpose of rxjs?
+How I implement lazy loading with custom preloading strategy in Angular?
+Difference between edger and lazy-loading-in-angular?

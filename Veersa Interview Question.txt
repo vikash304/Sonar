@@ -1,0 +1,15 @@
+How to implement-policy-based-and-role-based-authorization-in-net-core?
+Exception handling in asp.net core?
+how-to-add-custom-middleware-aspnet-core?
+Explain understanding-startup-class-in-asp-net-core?
+blueprint strategy in microservices?
+Explaing three major principle which microservices promises?
+EXplain microservice-design-principles?
+what-is-a-service-mesh?
+how to maintain data integrity, relationship-integrity and referential integrity across microservices?
+Explain managing-data-consistency-microservice-architecture?
+what are the challenges in microservices?
+how to decide the category on which i can select microservice pattern?
+what-is-command-query-segregation-pattern-cqrs?
+what is advantage and disadvantage of cqrs pattern?
+what was the main reason of cqrs?

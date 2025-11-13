@@ -1,0 +1,65 @@
+service: card
+
+frameworkVersion: "3"
+variablesResolutionMode: 20210326
+
+custom:
+  stage: ${opt:stage, "local"}
+  customDomainStage:
+    prod: prd
+  configBucket: payments-config-${self:custom.stage}
+  logLevel: info
+  dashboard:
+    handlerLambdas:
+      - healthCheck
+    apiId: !Ref HttpApi
+    alarms:
+      - ApiGatewayAlarm5xx
+      - ApiGatewayAlarmLatency
+
+useDotenv: false
+
+provider:
+  name: aws
+  region: eu-west-1
+  architecture: arm64
+  deploymentBucket:
+    versioning: true
+    blockPublicAccess: true
+    serverSideEncryption: AES256
+  runtime: nodejs18.x
+  lambdaHashingVersion: "20201221"
+  timeout: 100
+  httpApi:
+    cors: true
+    useProviderTags: true
+  logs:
+    httpApi: true
+  vpc:
+    subnetIds: []
+    securityGroupIds: []
+  environment:
+    REGION: ${self:provider.region}
+    LOG_LEVEL: ${self:custom.logLevel}
+  tracing:
+    apiGateway: true
+    lambda: true
+
+package:
+  patterns:
+    - "!./**"
+    - "config/**"
+    - "functions/**"
+    - "helpers/**"
+    - "libs/**"
+    - "models/**"
+    - "services/**"
+    - "node_modules/**"
+
+functions: ${file(serverless/functions.yml):functions}
+
+resources: ${file(serverless/resources.yml)}
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline

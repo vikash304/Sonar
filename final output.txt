@@ -1,0 +1,29 @@
+
+Given a list of strings group the anagrams together
+Input:
+[“eat”, “tea”, “tan”, “ate”, “nat”, “bat”]
+Output:
+	•		⁃	[[“eat”, “tea”, “ate”], [“tan”, “nat”], [“bat”]]
+	
+
+string[] output =null;	
+
+for(int i=0; i< lst.length-1; i++)
+{
+
+for(int j = 0; j< lst[i].length; j++)
+{
+flag = false;
+for(int k = 0; k<lst[i+1].length; k++){
+
+if(lst[i][j] == lst[k][j]{
+flag = true;
+}
+}
+flagone = flag;
+if(!flageone){break;}
+
+
+}
+
+if(flageone){ Output.add( lst[i]); }

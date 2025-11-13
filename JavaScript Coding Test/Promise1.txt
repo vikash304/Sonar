@@ -1,0 +1,25 @@
+let a = setTimeout(()=>{console.log('d')}, 500, 'one');
+
+let b = setTimeout(()=>{console.log('e')}, 500, 'two')
+
+
+Promise.race([a, b]).then((value) => {
+  console.log(value); // Output: "Second promise resolved" (since it finishes first)
+});
+
+const promise1 = new Promise((resolve) => {
+  setTimeout(resolve, 500, "First promise resolved");
+});
+
+const promise2 = new Promise((resolve) => {
+  setTimeout(resolve, 200, "Second promise resolved");
+});
+
+
+
+
+
+let a = "";
+a = a || null || 0 || "" || 1 || "1"
+
+console.log(a);

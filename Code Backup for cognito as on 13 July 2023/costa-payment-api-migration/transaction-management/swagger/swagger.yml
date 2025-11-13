@@ -1,0 +1,48 @@
+openapi: 3.0.0
+info:
+  description: Example description
+  version: 0.0.1
+  title: Dynamic Content API
+tags:
+- name: example
+  description: Example tag
+servers:
+  - url: http://localhost:3000/v1
+    description: Example server
+paths:
+  /health:
+    get:
+      tags:
+        - example
+      summary: Generic API health check endpoint
+      description: Perform a health check on the API's internal components, and respond with an API health status report
+      responses:
+        '200':
+          description: Healthy
+          content:
+           application/json:
+              schema:
+                $ref: "#/components/schemas/healthCheckResponse"
+        '500':
+          description: Internal server error
+          content:
+           application/json:
+              schema:
+                $ref: "#/components/schemas/healthCheckResponse"
+        '502':
+          description: Upstream server error
+          content:
+           application/json:
+              schema:
+                $ref: "#/components/schemas/healthCheckResponse"
+
+components:
+  schemas:
+    healthCheckResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Description of the health check result
+      required:
+        - message

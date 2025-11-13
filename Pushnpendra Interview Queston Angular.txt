@@ -1,0 +1,3 @@
+Explain optimization technique in angular?
+computic signal
+What is signal in angular?

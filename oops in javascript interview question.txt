@@ -1,0 +1,99 @@
+https://www.javascripttutorial.net/javascript-prototype/
+https://www.geeksforgeeks.org/explain-the-differences-between-for-in-and-for-of-statement-in-javascript/
+https://medium.com/@mandeepkaur1/object-literal-vs-constructor-in-javascript-df143296b816
+https://www.journaldev.com/1418/abstract-factory-design-pattern-in-java
+https://blog.bitsrc.io/understanding-scope-and-scope-chain-in-javascript-f6637978cf53
+https://www.javascripttutorial.net/javascript-array-methods/
+https://www.javascripttutorial.net/javascript-variable-scope/
+https://www.javascripttutorial.net/es6/javascript-promises/
+https://www.javascripttutorial.net/es6/javascript-object-destructuring/
+https://www.javascripttutorial.net/javascript-event-loop/
+https://www.javascripttutorial.net/javascript-for-in/
+https://www.javascripttutorial.net/javascript-call-stack/
+https://www.javascripttutorial.net/javascript-execution-context/
+https://www.javascripttutorial.net/es6/javascript-arrow-function/
+https://www.javascripttutorial.net/javascript-this/
+https://www.tutorialspoint.com/typescript/typescript_namespaces.htm
+https://www.geeksforgeeks.org/introduction-object-oriented-programming-javascript/
+https://www.javatpoint.com/javascript-oops-classes
+https://www.freecodecamp.org/news/how-javascript-implements-oop/
+https://www.geeksforgeeks.org/destructuring-assignment-in-javascript/
+https://www.educative.io/edpresso/what-is-object-destructuring-in-javascript
+https://www.freecodecamp.org/news/javascript-rest-vs-spread-operators/#:~:text=The%20main%20difference%20between%20rest,expands%20iterables%20into%20individual%20elements.
+display:inline
+dynamic x = "abc";
+(int)x
+javascript1.js - display(a,b)
+javscript2.js - display(a,b,c)
+deflego in react
+box model in css?
+How can implement method chaining in javascript?
+
+htmlpage.html - btn onClick= display(1,2,3)
+https://www.journaldev.com/1418/abstract-factory-design-pattern-in-java
+
+How to make abstract class in javascript?
+Ans : var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+   
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+
+function isAbstractMethodImplemented( ChildClass , baseClass)
+{
+    for (var p in baseClass.prototype)
+    {
+        
+        if(baseClass.prototype[p]=='abstract method')
+        {
+          if(ChildClass.prototype[p] && typeof(ChildClass.prototype[p]) =='function')
+            {
+              console.log("Abstract Method has imp ");
+            }
+         else
+           {
+            throw new Error("Abstract Method has no imp ");
+           }
+        }
+       
+    }
+}
+
+
+var Employee = (function () {
+    function Employee() {
+        if (this.constructor == Employee) {
+            throw new Error(" Object of Abstract Class cannot be created");
+        }
+    }
+    Employee.prototype.display='abstract method';
+    Employee.prototype.display1='abstract method';
+    Employee.prototype.display2='abstract method';
+    return Employee;
+})();
+var Manager = (function (_super) {
+    __extends(Manager, _super);
+    function Manager() {
+        _super.apply(this, arguments);
+    }
+   
+    Manager.prototype.display = function () {
+        //super.display();
+        console.log("I am a Manager");
+    };
+     Manager.prototype.display1 = function () {
+        return _super.prototype;
+    };
+  
+isAbstractMethodImplemented(Manager, _super);
+
+
+  
+    
+
+    return Manager;
+})(Employee);
+//var emp = new Employee;
+var mang = new Manager();
+mang.display1();

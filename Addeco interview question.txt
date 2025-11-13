@@ -1,0 +1,24 @@
+Addeco Interview question
+
+Deferred query in Linq?
+Real time scenario of Scope and singleton and transient in .net core?
+How to alter table for code first approach of entity framework if we have millions of data?
+How to combine response of multiple services and return to UI without use of Aggregator pattern?
+how to write unit test case for static method and static data?
+What is difference between select and selectmany of linq?
+What is difference Employee emp = new Employee(); and Employee emp = new();
+How to inject different implementation class instance into different controller which is registered with same interface?
+services.AddTransient<IRepository, ClientRepositroy>
+services.AddTransient<IRepository, DivisonRepositroy>
+services.AddTransient<IRepository, DepartmentRepositroy>
+
+IRepository rep;
+DepartmentController(IRepository rep)
+DivisionContoller(IRepository rep)
+ClientController(IRepository rep)
+How to optimize code first approach query and analyse delay response while there is no problem at database side?
+How do you design a table for millions of data?
+
+
+
+

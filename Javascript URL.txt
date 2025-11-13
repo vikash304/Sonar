@@ -1,0 +1,31 @@
+http://ryanmorr.com/understanding-scope-and-context-in-javascript/
+http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/
+http://davidshariff.com/blog/javascript-inheritance-patterns/
+http://davidshariff.com/blog/javascript-scope-chain-and-closures/
+
+http://javascriptissexy.com/oop-in-javascript-what-you-need-to-know/
+http://jscriptpatterns.blogspot.in/2013/01/javascript-interfaces.html
+https://medium.com/@olinations/the-javascript-runtime-environment-d58fa2e60dd0
+
+
+
+Q1. How would I be able to restart my app when an exception occurs?
+Ans: 
+
+You could run the process as a fork of another process, so you can fork it if it dies. You would use the native Cluster module for this:
+
+var cluster = require('cluster');
+if (cluster.isMaster) {
+  cluster.fork();
+
+  cluster.on('exit', function(worker, code, signal) {
+    cluster.fork();
+  });
+}
+
+if (cluster.isWorker) {
+  // put your code here
+}
+
+This code spawns one worker process, and if an error is thrown in the worker process, it will close, and the exit will respawn another worker process.
+

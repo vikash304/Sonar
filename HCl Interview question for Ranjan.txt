@@ -1,0 +1,5 @@
+can we remove configureService or configure from startup.cs?
+which events first fires in angular life cycle?
+what is ngDoCheck in angular?
+how angular application start?
+What is polylibrary in .net core?

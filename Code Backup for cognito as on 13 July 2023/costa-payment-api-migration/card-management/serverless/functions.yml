@@ -1,0 +1,35 @@
+functions:
+  healthCheck:
+    name: ${self:service}-${self:custom.stage}-health
+    handler: functions/health/index.handler
+    events:
+      - httpApi:
+          path: /health
+          method: post
+<<<<<<< Updated upstream
+
+  addCardSession:
+    handler: functions/add-card-session/add-card-session.handler
+    events:
+      - httpApi:
+          path: /cards/session
+          method: post      
+  
+=======
+  privateAPI:
+    handler: functions/user/index.handler
+    events:
+      - http:
+          path: /user
+          method: post
+          cors: true
+          authorizer:
+            name: PrivateAuthorizer
+            type: COGNITO_USER_POOLS
+            arn:
+              Fn::GetAtt:
+                - UserPool
+                - Arn
+            claims:
+              - email        
+>>>>>>> Stashed changes

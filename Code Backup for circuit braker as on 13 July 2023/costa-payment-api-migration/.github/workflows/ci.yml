@@ -1,0 +1,88 @@
+name: "Continuous Integration Workflow"
+
+on:
+  push:
+    branches:
+    - '**'
+
+jobs:
+  NodeJs-Lint-Test:
+    runs-on: ubuntu-22.04
+    name:
+      "Node.JS Static Code Analysis, Unit Test Coverage, Smoke Tests"
+
+      # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu, macos, or windows
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      # Checkout the repository to the GitHub Actions runner
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # An MVP solution to escaping GitHub Actions' own variables
+      - name: Test stuff
+        run: |
+          echo ${{ vars.TEST_VAR }}
+
+      # Set up Node.js
+      - name: Node.js Set up
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      # Install Node.js dependencies
+      - name: Node.js dependencies
+        run: npm install
+
+      # Run esLint for Node.js
+      - name: esLint for Node.js
+        run: npm run lint
+
+      # Install Serverless Framework globally
+      - name: Install Serverless
+        run: npm i -g serverless@3.x
+
+      # Run Unit tests and Coverage
+      - name: Unit Tests and Coverage
+        run: |
+          npm run test
+
+  SAST-Scan:
+    runs-on: ubuntu-22.04
+    name:
+      "Static Application Security Testing"
+
+      # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu, macos, or windows
+    defaults:
+      run:
+        shell: bash
+    steps:
+      # Checkout the repository to the GitHub Actions runner
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Set up Node.js
+      - name: Node.js Set up
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      # Install Node.js dependencies
+      - name: Node.js dependencies
+        run: npm install
+
+      # Run npm audit for production packages
+      - name: NPM audit
+        run: npm audit --production
+
+      # Run Trivy vulnerability scanner
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: "fs"
+          skip-dirs: "./node_modules"
+          hide-progress: false
+          ignore-unfixed: true
+          severity: "CRITICAL, HIGH"

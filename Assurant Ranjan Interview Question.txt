@@ -1,0 +1,27 @@
+What is the use of virtual keyword in c#?
+Method overriding and overloading?
+differnece between authentication and authorization?
+what is the assembly?
+how to handle exception in web api .net core?
+Supoose angular side student class has fname and lname and MVC side it is FirstName and LastName then how to handle this?
+how to implement redux in angular?
+How to do state management in angular?
+Explain Sql Injection?
+Explain Rank in Sql?
+Explain CTE in Sql?
+Select * Into <DestinationTableName> From <SourceTableName> Where 1 = 2
+Is Rollback work for ALTER(DDL) command?
+Difference between UNION vs UNION ALL in SQL?
+Explain types-of-web-api-action-results?
+Is Alter DDL or DML command?
+Explain dependency-injection-in-C-Sharp?
+what is bundling and minification in angular?
+what is scale-up-vs-scale-out?
+Explain restful-services-in-Asp-Net?
+what is service fabric?
+TableA has 20 rows
+TableB has 10 rows
+how to insert remaining rows of tableA into TableB?
+How to implement security in Angular?
+difference-between-where-and-having-clause-in-sql?
+Ans: The WHERE clause in SQL allows you to filter data from specific rows (individual rows) from a table based on certain conditions. In contrast, the HAVING clause in SQL allows you to filter data from a group of rows in a query based on conditions involving aggregate values
