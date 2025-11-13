@@ -1,0 +1,19 @@
+I want to print 1 to 10 by 5 thread in this manner
+Thread1 print 1
+Thread2 print 2
+Thread3 print 3
+Thread4 print 4
+Thread5 print 5
+Thread1 pring 6
+Thread2 print 7
+Thread3 print 8
+Thread4 print 9
+Thread5 print 10
+
+What is the @profile in springboot
+What is the difference between @component @configuration @bean?
+what is postcontroller and where it should attach
+how many type of bean?
+How nodejs is different from java if it is also multithreaded?
+how many ways you can create thread?
+answer: 3 wayss(executor framework, runnable)
