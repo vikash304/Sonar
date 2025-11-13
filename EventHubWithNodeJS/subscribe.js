@@ -2,7 +2,7 @@ const { EventHubConsumerClient } = require("@azure/event-hubs");
 const { ContainerClient } = require("@azure/storage-blob");
 const { BlobCheckpointStore } = require("@azure/eventhubs-checkpointstore-blob");
 
-const storageAccountConnectionString = "";
+const storageAccountCS = "";
 const containerName = "demo1storagecontainer";
 const eventHubConnectionString = "";
 const consumerGroup = "$Default";
@@ -12,7 +12,7 @@ async function main() {
 
 try {
     console.log("test");
- const blobContainerClient = new ContainerClient(storageAccountConnectionString, containerName);
+ const blobContainerClient = new ContainerClient(storageAccountCS, containerName);
 
   if (!(await blobContainerClient.exists())) {
     await blobContainerClient.create();

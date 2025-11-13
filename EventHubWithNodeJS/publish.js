@@ -1,10 +1,10 @@
 const { EventHubProducerClient } = require("@azure/event-hubs");
-const eventHubConnectionString = "";
+const eventHubCS = "";
 const eventHubName = "demoeventhubtest";
 async function main() {
 
     try {
-        const producer = new EventHubProducerClient(eventHubConnectionString, eventHubName);
+        const producer = new EventHubProducerClient(eventHubCS, eventHubName);
         const batch = await producer.createBatch();
         batch.tryAdd({ body: "First event test"});
         batch.tryAdd({ body: "Second event test"});
