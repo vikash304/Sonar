@@ -2,9 +2,9 @@ const { EventHubConsumerClient } = require("@azure/event-hubs");
 const { ContainerClient } = require("@azure/storage-blob");
 const { BlobCheckpointStore } = require("@azure/eventhubs-checkpointstore-blob");
 
-const storageAccountConnectionString = "DefaultEndpointsProtocol=https;AccountName=devopsguru191;AccountKey=AMvSKl+M/BOlFY72DH7zjk8kvBAKVT3WLakwi1L63Z9kF2E6enzxEqs93Wyn52MWsZoueEj5Cnjv+AStNJkZKQ==;EndpointSuffix=core.windows.net";
+const storageAccountConnectionString = "";
 const containerName = "demo1storagecontainer";
-const eventHubConnectionString = "Endpoint=sb://demo1eventhubnamespacetest.servicebus.windows.net/;SharedAccessKeyName=navi;SharedAccessKey=BZaH+6TDhuv2eAfL2KdqDzSXjDSMqlxeq+AEhNxAeTg=;EntityPath=demo1eventhubtest";
+const eventHubConnectionString = "";
 const consumerGroup = "$Default";
 const eventHubName = "demo1eventhubtest";
 
